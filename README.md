@@ -154,3 +154,14 @@ To reduce variance and improve robustness, we combined the predictions of three 
 
 ### 💡 Key Insight
 Averaging the predictions of diverse models (Ensemble) outperforms any single model. This confirms that different architectures capture different physical patterns (e.g., Physics CNN captures advection, while Baseline captures temporal inertia). The Ensemble approach reduces the overall prediction error.
+
+## 🤖 Version 6.0: Transformer Experiment (Swin3D)
+
+As an exploratory experiment, we implemented a Swin3D Transformer to test its computational efficiency on the RTX 5060 GPU.
+
+*   **Architecture:** Swin3D-T (Tiny) pre-trained on Kinetics-400.
+*   **Training Setup:** 5 Epochs with Mixed Precision (AMP), Batch Size = 1.
+*   **Time:** Completed in **~4 minutes** on GPU.
+*   **Results:** Early stopping at Epoch 4. Validation Loss = 0.000152. Mean Delta MAE = 0.0081 °C.
+*   **Note on Output:** The `torchvision` Swin3D is designed for video classification, so it outputs a 1D vector (basin-wide mean SST change) rather than a 2D spatial map. Therefore, its MAE is not directly comparable to the CNN's 2D spatial MAE.
+*   **Conclusion:** Transformers are highly efficient for sequence modeling. However, to predict full 2D SST maps, architectures like **SwinUNETR** or **ViViT** would be required. We leave this for future work.
