@@ -176,3 +176,17 @@ To visualize the model's performance, we plotted the Actual SST, Predicted SST, 
 - The model captures the general spatial pattern of SST very well.
 - **Red areas** (Overprediction) appear mostly in the Cold Zone (coastal upwelling regions), confirming our previous regional analysis.
 - **Blue areas** (Underprediction) are minimal, showing the model is generally unbiased.
+
+## 🔮 Version 7.0: Uncertainty Quantification & Extended Forecast
+
+We extended the project to include operational-level forecasting techniques:
+
+### 1. Ensemble Spread (Uncertainty Quantification)
+- We calculated the Standard Deviation across the three models (Baseline, Multi-var, Physics).
+- **Result:** The `uncertainty_map.png` shows regions where models disagree (high SD) vs agree (low SD). This helps identify areas where the model needs more training data.
+
+### 2. 14-Day Recursive Forecast (Forecast Skill vs Lead Time)
+- We used the Ensemble to forecast SST up to 14 days in advance.
+- **Result:** The `forecast_skill_14d.png` shows how MAE increases with lead time. The model remains stable up to 7 days, after which error accumulation accelerates.
+
+![Forecast Skill](reports/forecast_skill_14d.png)
