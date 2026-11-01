@@ -89,3 +89,22 @@ In Version 2.0, we pushed beyond simple feature addition and explored advanced a
 | **Physics-Informed CNN** | **0.1195** | **0.1811** | 🏆 **SOTA** |
 
 **Key Insight:** While raw atmospheric variables introduce noise, **incorporating physical laws (Physics-Informed Loss)** effectively guides the model to make more physically consistent and accurate predictions.
+
+## 🌊 Version 3.0: The Data Resolution Trade-off
+
+In the final phase, we investigated whether using high-resolution atmospheric data (ERA5, 0.25°) improves physics-informed forecasting compared to coarse data (NCEP, 2.5°).
+
+### 🏆 Final Leaderboard (Test Year 2021)
+
+| Model | Input Data | MAE (°C) | RMSE (°C) | Note |
+|:---|:---|:---:|:---:|:---|
+| Persistence | - | 0.1243 | 0.1919 | Baseline |
+| E1: SST-only | - | 0.1205 | 0.1836 | V1 Baseline |
+| Multi-Task | SST + SLP | 0.1203 | 0.1828 | V2 |
+| **Physics (NCEP)** | SST + NCEP Wind | **0.1195** | **0.1811** | 🏆 **Best** |
+| Physics (ERA5) | SST + ERA5 Wind | 0.1213 | 0.1822 | High-res attempt |
+
+### 💡 Key Scientific Insight
+1. **Physics-Informed Learning works:** Incorporating the Advection equation with NCEP wind achieved the best overall performance.
+2. **Resolution Trade-off:** Surprisingly, using high-resolution ERA5 wind (0.25°) *degraded* performance compared to coarse NCEP wind (2.5°). This is likely because high-frequency turbulence in ERA5 introduces noise into the simple Advection constraint. Coarse NCEP data provides a smoother, more stable signal for the physics loss.
+3. **Conclusion:** More data does not always mean better. The structural simplicity of the physical constraint matches better with synoptic-scale (coarse) data.
