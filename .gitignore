@@ -1,0 +1,32 @@
+# --- Python / Virtual Environment ---
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# --- Data (ห้ามอัปข้อมูลดิบขนาดใหญ่) ---
+data/
+data/raw/
+data/processed/
+*.nc
+
+# --- Models (ห้ามอัปไฟล์ Weight) ---
+model/
+models/
+*.pth
+*.pt
+*.ckpt
+
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- ไฟล์ขยะอื่นๆ ---
+*.deb
+*.log
+cuda-keyring_1.1-1_all.deb
+download_wind_final.py
