@@ -165,3 +165,14 @@ As an exploratory experiment, we implemented a Swin3D Transformer to test its co
 *   **Results:** Early stopping at Epoch 4. Validation Loss = 0.000152. Mean Delta MAE = 0.0081 °C.
 *   **Note on Output:** The `torchvision` Swin3D is designed for video classification, so it outputs a 1D vector (basin-wide mean SST change) rather than a 2D spatial map. Therefore, its MAE is not directly comparable to the CNN's 2D spatial MAE.
 *   **Conclusion:** Transformers are highly efficient for sequence modeling. However, to predict full 2D SST maps, architectures like **SwinUNETR** or **ViViT** would be required. We leave this for future work.
+
+## 🗺️ Spatial Error Analysis
+
+To visualize the model's performance, we plotted the Actual SST, Predicted SST, and the Error Map (Predicted - Actual) for a representative day in 2021.
+
+![Spatial Map Comparison](reports/spatial_map_comparison.png)
+
+**Key Observations:**
+- The model captures the general spatial pattern of SST very well.
+- **Red areas** (Overprediction) appear mostly in the Cold Zone (coastal upwelling regions), confirming our previous regional analysis.
+- **Blue areas** (Underprediction) are minimal, showing the model is generally unbiased.
