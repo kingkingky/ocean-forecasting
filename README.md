@@ -70,3 +70,22 @@ Explore longer forecast horizons (3-day, 7-day) using autoregressive rolling.
 Incorporate ocean current data (e.g., from HYCOM or Copernicus).
 
 Apply Attention mechanisms (e.g., Transformers) to handle long-term dependencies.
+
+## 🚀 Version 2.0: Advanced Learning & Physics-Informed
+
+In Version 2.0, we pushed beyond simple feature addition and explored advanced architectures and physics-guided learning:
+
+1. **Feature Diagnostic:** Added Precipitation (CMAP) and SLP. *Result: Adding raw atmospheric variables degrades performance.*
+2. **Multi-Task Learning (Shared Encoder):** Predicted SST and SLP simultaneously with a reduced loss weight for SLP. *Result: Slight improvement (MAE: 0.1203).*
+3. **Physics-Informed Learning (Advection):** Integrated the Advection Equation (`u*dT/dx + v*dT/dy`) as a physics regularizer. *Result: **Best performance** (MAE: 0.1195).*
+
+### 🏆 Final Leaderboard (Test Year 2021)
+
+| Model | MAE (°C) | RMSE (°C) | Note |
+|:---|:---:|:---:|:---|
+| Persistence | 0.1243 | 0.1919 | Baseline |
+| E1: SST-only CNN | 0.1205 | 0.1836 | Version 1.0 |
+| Multi-Task CNN | 0.1203 | 0.1828 | Version 2.0 |
+| **Physics-Informed CNN** | **0.1195** | **0.1811** | 🏆 **SOTA** |
+
+**Key Insight:** While raw atmospheric variables introduce noise, **incorporating physical laws (Physics-Informed Loss)** effectively guides the model to make more physically consistent and accurate predictions.
