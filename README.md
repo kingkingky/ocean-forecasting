@@ -123,3 +123,20 @@ To address the spatial heterogeneity of ocean dynamics, we evaluated the Physics
 1. **High predictability in the Warm Pool:** The model achieves its best performance (MAE = 0.1081°C) in the Warm Pool due to high thermal inertia and stable sea surface temperatures.
 2. **Challenges in the Cold Zone:** Performance degrades in the Cold Zone (MAE = 0.1609°C) where coastal upwelling and wind-driven mixing introduce high-frequency variability that is harder to capture.
 3. **Conclusion:** Future improvements should focus on incorporating **ocean current data** and **mixed-layer depth** to better model the dynamic regions (Cold Zone).
+
+## 🌪️ Version 4.1: Wind Forcing Analysis
+
+To understand the physical mechanisms driving SST variability, we calculated the Pearson correlation between wind speed and daily SST change across the three thermal zones.
+
+| Zone | Mean SST | Wind-SST Correlation (r) | Interpretation |
+|:---|:---:|:---:|:---|
+| **Warm Pool** | > 28°C | **+0.0891** | Weak positive. High thermal inertia dampens wind effects. |
+| **Mid Zone** | 25-28°C | **-0.2693** | **Moderate negative.** Wind-driven evaporative cooling and mixing dominate. |
+| **Cold Zone** | < 25°C | **-0.0767** | Weak negative. Complex coastal dynamics mask wind effects. |
+
+### 💡 Key Physical Insights
+1. **Thermal Inertia in the Warm Pool:** The weak correlation (+0.0891) explains why the model performs best here; the ocean's high heat capacity makes SST highly predictable regardless of wind.
+2. **Evaporative Cooling in the Mid Zone:** The strongest correlation (-0.2693) indicates that stronger winds lead to cooler SST (negative r). This highlights the need for **Heat Flux** variables in future models.
+3. **Complexity of the Cold Zone:** The weak correlation (-0.0767) suggests that SST changes in cold regions are driven by a combination of upwelling, currents, and tides, not just wind speed.
+
+**Conclusion:** Physics-Informed models must account for region-specific dominant mechanisms (e.g., Advection in Mid Zone, Thermal Inertia in Warm Pool).
