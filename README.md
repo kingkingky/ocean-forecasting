@@ -108,3 +108,18 @@ In the final phase, we investigated whether using high-resolution atmospheric da
 1. **Physics-Informed Learning works:** Incorporating the Advection equation with NCEP wind achieved the best overall performance.
 2. **Resolution Trade-off:** Surprisingly, using high-resolution ERA5 wind (0.25°) *degraded* performance compared to coarse NCEP wind (2.5°). This is likely because high-frequency turbulence in ERA5 introduces noise into the simple Advection constraint. Coarse NCEP data provides a smoother, more stable signal for the physics loss.
 3. **Conclusion:** More data does not always mean better. The structural simplicity of the physical constraint matches better with synoptic-scale (coarse) data.
+
+## 🗺️ Version 4.0: Regional Analysis (Warm Pool vs Cold Zone)
+
+To address the spatial heterogeneity of ocean dynamics, we evaluated the Physics-Informed Model across three distinct thermal zones in the Western Pacific:
+
+| Zone | Mean SST | Grid Cells | MAE (°C) | RMSE (°C) |
+|:---|:---:|:---:|:---:|:---:|
+| **Warm Pool** | > 28°C | 6,035 | **0.1081** | 0.1571 |
+| **Mid Zone** | 25-28°C | 1,371 | 0.1427 | 0.2205 |
+| **Cold Zone** | < 25°C | 1,109 | 0.1609 | 0.2471 |
+
+### 💡 Key Insights
+1. **High predictability in the Warm Pool:** The model achieves its best performance (MAE = 0.1081°C) in the Warm Pool due to high thermal inertia and stable sea surface temperatures.
+2. **Challenges in the Cold Zone:** Performance degrades in the Cold Zone (MAE = 0.1609°C) where coastal upwelling and wind-driven mixing introduce high-frequency variability that is harder to capture.
+3. **Conclusion:** Future improvements should focus on incorporating **ocean current data** and **mixed-layer depth** to better model the dynamic regions (Cold Zone).
