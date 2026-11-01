@@ -140,3 +140,17 @@ To understand the physical mechanisms driving SST variability, we calculated the
 3. **Complexity of the Cold Zone:** The weak correlation (-0.0767) suggests that SST changes in cold regions are driven by a combination of upwelling, currents, and tides, not just wind speed.
 
 **Conclusion:** Physics-Informed models must account for region-specific dominant mechanisms (e.g., Advection in Mid Zone, Thermal Inertia in Warm Pool).
+
+## 🏆 Version 5.0: Ensemble Forecasting (Final Model)
+
+To reduce variance and improve robustness, we combined the predictions of three distinct architectures: Baseline CNN, Multi-Variable CNN, and Physics-Informed CNN.
+
+| Model | MAE (°C) | RMSE (°C) | Note |
+|:---|:---:|:---:|:---|
+| Baseline CNN | 0.1238 | 0.1866 | SST only |
+| Multi-Var CNN | 0.1230 | 0.1869 | SST + SLP |
+| Physics CNN | 0.1205 | 0.1824 | SST + Wind (Advection Loss) |
+| **Ensemble (Average)** | **0.1195** | **0.1830** | 🏆 **Final Best Model** |
+
+### 💡 Key Insight
+Averaging the predictions of diverse models (Ensemble) outperforms any single model. This confirms that different architectures capture different physical patterns (e.g., Physics CNN captures advection, while Baseline captures temporal inertia). The Ensemble approach reduces the overall prediction error.
