@@ -190,3 +190,12 @@ We extended the project to include operational-level forecasting techniques:
 - **Result:** The `forecast_skill_14d.png` shows how MAE increases with lead time. The model remains stable up to 7 days, after which error accumulation accelerates.
 
 ![Forecast Skill](reports/forecast_skill_14d.png)
+
+### ☁️ Version 6.1: Transformer on Google Colab (Cloud GPU)
+
+To overcome local hardware constraints, we ran the Swin3D Transformer on Google Colab (T4 GPU).
+
+*   **Training Setup:** 10 Epochs, Batch Size = 1, Mixed Precision (AMP).
+*   **Results:** Early stopping at Epoch 9. Validation Loss = 0.000061. Mean Delta MAE = **0.0064 °C**.
+*   **Comparison:** Training on Cloud GPU was faster and more stable than the local RTX 5060 (avoiding cuDNN errors). The Cloud version achieved a slightly lower MAE (0.0064 vs 0.0081) due to more training epochs.
+*   **Conclusion:** Cloud platforms like Google Colab are highly recommended for Transformer experiments due to their stability and ease of setup.
